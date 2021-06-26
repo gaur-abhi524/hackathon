@@ -21,13 +21,12 @@
         <li>
           <a href="#new-release">Search</a>
         </li>
-        <li><a href="#">Albums</a></li>
       </ul>
     </header>
     <section class="hero">
-      <img src="resources/left-side-image.png" alt="" />
-      <img src="resources/logo.png" alt="" class="mid-img"/>
-      <img src="resources/right-side-image.png" alt="" />
+      <img src="resources/left-side-image.png" alt="" id="left-img" />
+      <img src="resources/logo.png" alt="" id="mid-img"/>
+      <img src="resources/right-side-image.png" alt="" id="right-img" />
     </section>
       <div id="Genres" class="sec">
         <img src="resources/Music-amico.svg" alt="" class="genre-img" />
@@ -56,24 +55,25 @@
       <div id="new-release" class="sec">
         <img src="resources/Listening happy music-pana.png" alt="" class="release-img">
         <h3>Search your favourite Track, Album, Artist</h3>
-      <form name="search" id="search">
-        <label>Select Type:</label>
-        <select name="" id="select" >
-          <option>Track</option>
-          <option>Album</option>
-          <option>Artist</option>
-        </select><br>
-        <input type="text" id="query">
-      <i class="fas fa-search"></i><br><br>
-      <input type="submit" class="btn" id="query-submit">
-    </form>
+        <form name="search" id="search">
+          <input type="hidden" id='hidden_token'>
+          <input type="search" id="query">
+          <i class="fas fa-search"></i><br>
+          <input type="submit" class="btn" id="query-submit">
+        </form>
+        <div id="ssonglist">
+
+        </div>
+        <div id="ssongdetail">
+
+        </div>
       </div>
-      <div class="sec">
-        
-      </div>
-      <div class="sec">
-        
-      </div>
+      <footer class="section">
+        <p>
+          copyright &copy; Aweesome music player web page
+          2021. all rights reserved
+        </p>
+      </footer>
     <script
       src="https://kit.fontawesome.com/e541b629c5.js"
       crossorigin="anonymous"

@@ -52,18 +52,6 @@ h2{
     transform: translateY(20px);
 }
 
-#search{
-    position: absolute;
-    top:60%;
-    left: 45%;
-}
-
-#query-submit{
-    position: absolute;
-    top:70%;
-    left:30%;
-}
-
 header .logo{
     color:#fff;
     font-weight: 700;
@@ -118,7 +106,7 @@ section img{
     pointer-events: none;
 }
 
-.mid-img{
+#mid-img{
     position: relative;
     top:30%;
 }
@@ -173,7 +161,8 @@ section::before{
 /* new release section */
 
 #new-release{
-    height:50vh;
+    min-height:60vh;
+    text-align: center;
 }
 
 .release-img{
@@ -182,9 +171,16 @@ section::before{
     left: 80%;
     width:20%;
 }
-#new-release h3{
-    display: inline-block;
-    position: relative;
-    left:40%;
-    top:30%;
+
+
+footer {
+    background: #592240;
+    padding: 5rem 1rem;
+  }
+footer p {
+    color: white;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: 1.5px;
+    margin-bottom: 0;
 }

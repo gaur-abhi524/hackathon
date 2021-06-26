@@ -1,4 +1,17 @@
+//scroll animations
 
+let leftimg=document.getElementById("left-img");
+let midimg=document.getElementById("mid-img");
+let rightimg=document.getElementById("right-img");
+
+window.addEventListener('scroll',function(){
+    let value=window.scrollY;
+    leftimg.style.left = -value*0.3 + 'px';
+    rightimg.style.left=value*0.3+'px';
+    midimg.style.top=value+'px';
+})
+
+//api functionality
 const clientid="dd0c922c8bf9407b94ffcd9bd5beb7ef";
 const clientsecret="de7c99312b284fcd85840966acfa308f";
 
@@ -169,12 +182,62 @@ const controller=function(){
     loadgenre();
 };
 controller()
+//search functionality
 
-const q=document.getElementById("query").value;
 const q_submit=document.getElementById("query-submit");
 const select=document.getElementById("select");
+const ssonglist=document.getElementById("ssonglist");
+const ssongdetail=document.getElementById("ssongdetail");
+
+function createTrack(id, name) {
+    const html = `<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="${id}">${name}</a><br>`;
+    ssonglist.insertAdjacentHTML('beforeend', html);
+}
+
+function createTrackDetail(img, title, artist) {
+
+    const detailDiv = ssongdetail;
+    detailDiv.innerHTML = '';
+
+    const html = 
+    `
+    <div class="row col-sm-12 px-0">
+        <img src="${img}" alt="">        
+    </div>
+    <div class="row col-sm-12 px-0">
+        <label for="Genre" class="form-label col-sm-12">${title}:</label>
+    </div>
+    <div class="row col-sm-12 px-0">
+        <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
+    </div> 
+    `;
+
+    detailDiv.insertAdjacentHTML('beforeend', html)
+}
+
+function resetTrackDetail() {
+    ssongdetail.innerHTML = '';
+}
+
+function resetTracks() {
+    ssonglist.innerHTML = '';
+    resetTrackDetail();
+}
+
+function storeToken(value) {
+    hiddentoken.value = value;
+}
+
+function getStoredToken() {
+    return {
+        token: hiddentoken.value
+    }
+}
+
 q_submit.addEventListener('click',async(e) =>{
     e.preventDefault();
-    console.log(q);
+    const q=document.getElementById("query").value;
+    
 
+    console.log(q);
 })
