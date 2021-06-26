@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="resources/Music.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Music player</title>
+  </head>
+  <body>
+    <header>
+      <a href="#" class="logo">Music player</a>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#Genres">Genres</a>
+        </li>
+        <li>
+          <a href="#new-release">Search</a>
+        </li>
+        <li><a href="#">Albums</a></li>
+      </ul>
+    </header>
+    <section class="hero">
+      <img src="resources/left-side-image.png" alt="" />
+      <img src="resources/logo.png" alt="" class="mid-img"/>
+      <img src="resources/right-side-image.png" alt="" />
+    </section>
+      <div id="Genres" class="sec">
+        <img src="resources/Music-amico.svg" alt="" class="genre-img" />
+        <h2>Find playlists by Genre:</h2>
+        <form action="">
+          <input type="hidden" id='hidden_token'>
+          <label>Select Genre:</label>
+          <select name="" id="select-genre">
+            <option>select..</option>
+          </select>
+          <br />
+          <label>Select Playlist:</label>
+          <select name="" id="select-playlist">
+            <option>select..</option>
+          </select>
+          <br>
+          <button type="submit" class="btn" id="genre-submit">Search</button>
+        </form>
+        <div id="song-list">
+
+        </div>
+        <div id="song-detail">
+
+        </div>
+      </div>
+      <div id="new-release" class="sec">
+        <img src="resources/Listening happy music-pana.png" alt="" class="release-img">
+        <h3>Search your favourite Track, Album, Artist</h3>
+      <form name="search" id="search">
+        <label>Select Type:</label>
+        <select name="" id="select" >
+          <option>Track</option>
+          <option>Album</option>
+          <option>Artist</option>
+        </select><br>
+        <input type="text" id="query">
+      <i class="fas fa-search"></i><br><br>
+      <input type="submit" class="btn" id="query-submit">
+    </form>
+      </div>
+      <div class="sec">
+        
+      </div>
+      <div class="sec">
+        
+      </div>
+    <script
+      src="https://kit.fontawesome.com/e541b629c5.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
