@@ -9,9 +9,15 @@
     <title>Music player</title>
   </head>
   <body>
-    <header>
+    <nav> 
+    <div class="nav-center">
+      <div class="nav-header">
       <a href="#" class="logo">Music player</a>
-      <ul>
+      <button class="nav-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+      <ul class="links">
         <li>
           <a href="#">Home</a>
         </li>
@@ -22,13 +28,15 @@
           <a href="#new-release">Search</a>
         </li>
         <li>
-          <a href="explore">Explore</a>
+          <a href="#explore">Explore</a>
         </li>
       </ul>
-    </header>
+    </div>
+  </nav>
     <section class="hero">
       <img src="resources/left-side-image.png" alt="" id="left-img" />
       <img src="resources/logo.png" alt="" id="mid-img"/>
+      <a href="#explore" id="btn">Explore</a>
       <img src="resources/right-side-image.png" alt="" id="right-img" />
     </section>
       <div id="Genres" class="sec">
@@ -77,8 +85,43 @@
 
         </div>
       </div>
-      <div id="explore">
-
+        <div class="container sec" id="explore">
+          <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>01</h2>
+                <h3>TOP 50-Global</h3>
+                <p>
+                  Listen to daily updated most played tracks in the world right now.
+                </p>
+                <a href="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF">Visit</a>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>02</h2>
+                <h3>Top tracks and artists</h3>
+                <p>
+                  Listen to top tracks and artists of 2020 on spotify now.
+                </p>
+                <a href="https://open.spotify.com/genre/2020-top-music">Visit</a>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="box">
+              <div class="content">
+                <h2>03</h2>
+                <h3>Popular new-release</h3>
+                <p>
+                  Most popular newly release tracks from around the world. Listen Now.
+                </p>
+                <a href="https://open.spotify.com/genre/home-popular-new-releases[0]">Visit</a>
+              </div>
+            </div>
+          </div>
       </div>
       <footer class="section">
         <p>

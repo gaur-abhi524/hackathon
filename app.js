@@ -11,6 +11,25 @@ window.addEventListener('scroll',function(){
     midimg.style.top=value+'px';
 })
 
+//responsive functionality
+const togg=document.querySelector(".nav-toggle");
+const links=document.querySelector(".links");
+
+togg.addEventListener("click",function(){
+    let list=links.classList;
+    if(list.contains("show-links"))
+   {  
+        list.remove("show-links");
+        togg.classList.remove("show");
+    }
+    else
+    {
+        list.add("show-links");
+        togg.classList.add("show");
+    }
+})
+
+
 //api functionality
 const clientid="dd0c922c8bf9407b94ffcd9bd5beb7ef";
 const clientsecret="de7c99312b284fcd85840966acfa308f";
@@ -194,7 +213,13 @@ const search = async (token, query, type) => {
     });
 
     const data = await result.json();
-    return data.tracks.items;
+    var firstKey = Object.keys(data)[0];
+    if(firstKey == 'tracks')
+     {   return data.tracks.items;}
+    else if(firstKey == 'artist')
+    {return data.artists.items;}
+    else
+        return data.tracks.items ;
 }
 
 const q_submit=document.getElementById("query-submit");
