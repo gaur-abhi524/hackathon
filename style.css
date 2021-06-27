@@ -142,7 +142,6 @@ section::before{
     position: relative;
     padding:100px;
     background: #1c0522;
-    z-index: -2;
 }
 
 .type{
@@ -359,13 +358,16 @@ footer p {
     .genre-img{
         top:40px;
         width:40%;
-        z-index: -1;
+        z-index: 0;
     }
     .release-img{
         top:30px;
         left:220px;
         width: 40%;
-        z-index: -1;
+        z-index: 0;
+    }
+    .sec{
+        z-index:1;
     }
     #query{
         position: relative;
