@@ -86,53 +86,53 @@ const song_detail=document.getElementById('song-detail');
 const hiddentoken=document.getElementById('hidden_token');
 const submit_btn=document.getElementById('genre-submit')
 
-function createGenre(text, value) {
+function createGenre(text, value,param=genre) {
     const html = `<option value="${value}">${text}</option>`;
-    genre.insertAdjacentHTML('beforeend', html);
+    param.insertAdjacentHTML('beforeend', html);
 }
 
-function createPlaylist(text, value) {
+function createPlaylist(text, value,param=playlist) {
     const html = `<option value="${value}">${text}</option>`;
-    playlist.insertAdjacentHTML('beforeend', html);
+    param.insertAdjacentHTML('beforeend', html);
 }
 
-function createTrack(id, name) {
+function createTrack(id, name,param=song_list) {
     const html = `<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="${id}">${name}</a><br>`;
-    song_list.insertAdjacentHTML('beforeend', html);
+    param.insertAdjacentHTML('beforeend', html);
 }
 
-function createTrackDetail(img, title, artist) {
+function createTrackDetail(img, title, artist,param=song_detail) {
 
-    const detailDiv = song_detail;
+    const detailDiv = param;
     detailDiv.innerHTML = '';
 
     const html = 
     `
-    <div class="row col-sm-12 px-0">
+    <div>
         <img src="${img}" alt="">        
     </div>
-    <div class="row col-sm-12 px-0">
-        <label for="Genre" class="form-label col-sm-12">${title}:</label>
+    <div>
+        <label for="Genre">${title}:</label>
     </div>
-    <div class="row col-sm-12 px-0">
-        <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
+    <div>
+        <label for="artist" >By ${artist}:</label>
     </div> 
     `;
 
     detailDiv.insertAdjacentHTML('beforeend', html)
 }
 
-function resetTrackDetail() {
-    song_detail.innerHTML = '';
+function resetTrackDetail(param=song_detail) {
+    param.innerHTML = '';
 }
 
-function resetTracks() {
-    song_list.innerHTML = '';
+function resetTracks(param=song_list) {
+    param.innerHTML = '';
     resetTrackDetail();
 }
 
-function resetPlaylist() {
-    playlist.innerHTML = '';
+function resetPlaylist(param=playlist) {
+    param.innerHTML = '';
     resetTracks();
 }
 
@@ -182,62 +182,54 @@ const controller=function(){
     loadgenre();
 };
 controller()
-//search functionality
+// search functionality
+
+const search = async (token, query, type) => {
+
+    const limit = 10;
+
+    const result = await fetch(`https://api.spotify.com/v1/search?q=${query}%20song&type=${type}`, {
+        method: 'GET',
+        headers: { 'Authorization' : 'Bearer ' + token}
+    });
+
+    const data = await result.json();
+    return data.tracks.items;
+}
 
 const q_submit=document.getElementById("query-submit");
 const select=document.getElementById("select");
 const ssonglist=document.getElementById("ssonglist");
 const ssongdetail=document.getElementById("ssongdetail");
+const type=document.getElementById("select");
 
-function createTrack(id, name) {
-    const html = `<a href="#" class="list-group-item list-group-item-action list-group-item-light" id="${id}">${name}</a><br>`;
-    ssonglist.insertAdjacentHTML('beforeend', html);
-}
+const searcher=function(){
 
-function createTrackDetail(img, title, artist) {
-
-    const detailDiv = ssongdetail;
-    detailDiv.innerHTML = '';
-
-    const html = 
-    `
-    <div class="row col-sm-12 px-0">
-        <img src="${img}" alt="">        
-    </div>
-    <div class="row col-sm-12 px-0">
-        <label for="Genre" class="form-label col-sm-12">${title}:</label>
-    </div>
-    <div class="row col-sm-12 px-0">
-        <label for="artist" class="form-label col-sm-12">By ${artist}:</label>
-    </div> 
-    `;
-
-    detailDiv.insertAdjacentHTML('beforeend', html)
-}
-
-function resetTrackDetail() {
-    ssongdetail.innerHTML = '';
-}
-
-function resetTracks() {
-    ssonglist.innerHTML = '';
-    resetTrackDetail();
-}
-
-function storeToken(value) {
-    hiddentoken.value = value;
-}
-
-function getStoredToken() {
-    return {
-        token: hiddentoken.value
+    const tokens = async() =>
+    {
+        const token= await gettoken();
+        storeToken(token);
+        console.log(token);
     }
-}
 
-q_submit.addEventListener('click',async(e) =>{
-    e.preventDefault();
-    const q=document.getElementById("query").value;
-    
-
-    console.log(q);
-})
+    q_submit.addEventListener('click',async(e) =>{
+        e.preventDefault();
+        const q=document.getElementById("query").value;
+        const token=getStoredToken().token;
+        console.log(q);
+        const qtype=type.options[type.selectedIndex].value;
+        const tracks=await search(token, q, qtype);
+        resetTracks(ssonglist);
+        tracks.forEach(element => createTrack(element.href, element.name, ssonglist));
+    })
+    ssonglist.addEventListener('click',async(e) => {
+        e.preventDefault();
+        resetTrackDetail(ssongdetail);
+        const token=getStoredToken().token;
+        const trackEndPoint=e.target.id;
+        const track=await _getTrack(token, trackEndPoint);
+        createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name,ssongdetail);
+    })
+    tokens();
+};
+searcher()

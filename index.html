@@ -21,6 +21,9 @@
         <li>
           <a href="#new-release">Search</a>
         </li>
+        <li>
+          <a href="explore">Explore</a>
+        </li>
       </ul>
     </header>
     <section class="hero">
@@ -56,6 +59,12 @@
         <img src="resources/Listening happy music-pana.png" alt="" class="release-img">
         <h3>Search your favourite Track, Album, Artist</h3>
         <form name="search" id="search">
+          <label>Select Type:</label>
+        <select name="" id="select" >
+          <option>track</option>
+          <option>album</option>
+          <option>artist</option>
+        </select><br>
           <input type="hidden" id='hidden_token'>
           <input type="search" id="query">
           <i class="fas fa-search"></i><br>
@@ -68,6 +77,9 @@
 
         </div>
       </div>
+      <div id="explore">
+
+      </div>
       <footer class="section">
         <p>
           copyright &copy; Aweesome music player web page
@@ -78,7 +90,6 @@
       src="https://kit.fontawesome.com/e541b629c5.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

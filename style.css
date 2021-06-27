@@ -172,6 +172,18 @@ section::before{
     width:20%;
 }
 
+#ssonglist{
+    padding:30px;
+    margin-top: 30px;
+    line-height: 3;
+}
+
+#ssonglist a{
+    text-decoration: none;
+    color: white;
+}
+
+/* footer  */
 
 footer {
     background: #592240;
