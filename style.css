@@ -124,6 +124,16 @@ section img{
     pointer-events: none;
 }
 
+section h1{
+    position: absolute;
+    font-size: 4rem;
+}
+
+section h4{
+    position: absolute;
+    bottom:40%;
+}
+
 #mid-img{
     position: relative;
     z-index:1;
@@ -175,7 +185,6 @@ section::before{
     text-decoration: none;
     color: white;
 }
-
 /* new release section */
 
 #new-release{
@@ -253,9 +262,7 @@ section::before{
     transition:0.5s;
     pointer-events: none;
 }
-.container .card:hover .box .content h2{
-    color : rgba(0,0,0,0.05);
-}
+
 .container .card .box .content h3{
     font-size: 1.8em;
     color: #777;
@@ -358,13 +365,13 @@ footer p {
     .genre-img{
         top:40px;
         width:40%;
-        z-index: 0;
+        z-index: -1;
     }
     .release-img{
         top:30px;
         left:220px;
         width: 40%;
-        z-index: 0;
+        z-index: -1;
     }
     .sec{
         z-index:1;
@@ -373,4 +380,15 @@ footer p {
         position: relative;
         right:30px;
     }
+    section h1{
+        position: absolute;
+        font-size: 2rem;
+    }
+    
+    section h4{
+        position: absolute;
+        padding: 10px;
+        bottom:40%;
+    }
+    
 }

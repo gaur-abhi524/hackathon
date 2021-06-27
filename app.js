@@ -120,7 +120,7 @@ function createTrack(id, name,param=song_list) {
     param.insertAdjacentHTML('beforeend', html);
 }
 
-function createTrackDetail(img, title, artist,param=song_detail) {
+function createTrackDetail(img, title, artist,href='',param=song_detail) {
 
     const detailDiv = param;
     detailDiv.innerHTML = '';
@@ -135,7 +135,8 @@ function createTrackDetail(img, title, artist,param=song_detail) {
     </div>
     <div>
         <label for="artist" >By ${artist}:</label>
-    </div> 
+    </div> <br>
+    <a href="${href}"><i class="far fa-play-circle fa-5x"></i></a>
     `;
 
     detailDiv.insertAdjacentHTML('beforeend', html)
@@ -196,7 +197,8 @@ const controller=function(){
         const token=getStoredToken().token;
         const trackEndPoint=e.target.id;
         const track=await _getTrack(token, trackEndPoint);
-        createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name);
+        console.log(track);
+        createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name, track.external_urls.spotify);
     })
     loadgenre();
 };
@@ -214,12 +216,7 @@ const search = async (token, query, type) => {
 
     const data = await result.json();
     var firstKey = Object.keys(data)[0];
-    if(firstKey == 'tracks')
-     {   return data.tracks.items;}
-    else if(firstKey == 'artist')
-    {return data.artists.items;}
-    else
-        return data.tracks.items ;
+   return data.tracks.items;
 }
 
 const q_submit=document.getElementById("query-submit");
@@ -253,7 +250,7 @@ const searcher=function(){
         const token=getStoredToken().token;
         const trackEndPoint=e.target.id;
         const track=await _getTrack(token, trackEndPoint);
-        createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name,ssongdetail);
+        createTrackDetail(track.album.images[2].url, track.name, track.artists[0].name, track.external_urls.spotify, ssongdetail);
     })
     tokens();
 };
